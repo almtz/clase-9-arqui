@@ -1,5 +1,3 @@
-from abs import ABCMenta, abstractstaticmethod
-
 database = {
 	"mexico" : ["64382", "62819", "69312"],
 	"usa" : ["12343", "12355", "12346"],
@@ -8,9 +6,9 @@ database = {
 
 class ZipCodes():
 	def get_data(country):
-		print(database[country])
+		return database[country]
 
-class ZipCodesSingleton():
+class ZipCodesSingleton(ZipCodes):
 	
 	__instance = None
 	
@@ -18,15 +16,23 @@ class ZipCodesSingleton():
 	def get_instance():
 		if ZipCodesSingleton.__instance == None:
 			ZipCodesSingleton()
-			return __instance
+		return ZipCodesSingleton.__instance
 
-	def __init__(self, zipcode):
+	def __init__(self):
 		if ZipCodesSingleton.__instance != None:
-			rise Exception("Singleton cannot de instantied more than once!")
+			raise Exception("Singleton cannot de instantied more than once!")
 		else:
-			self.zipcode = zipcode
 			ZipCodesSingleton.__instance = self
 
 	@staticmethod
-	def print_data():
-		print("Name: {ZipCodesSingleton.__instance.zipcode}")
+	def get_data(country):
+		print(database[country])
+
+z = ZipCodesSingleton()
+print(z)
+z.get_data("mexico")
+
+z2 = ZipCodesSingleton.get_instance()
+print(z2)
+z2.get_data("canada")
+
