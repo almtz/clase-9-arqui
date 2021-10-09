@@ -1,14 +1,16 @@
+from abc import ABCMeta, abstractstaticmethod
 database = {
 	"mexico" : ["64382", "62819", "69312"],
 	"usa" : ["12343", "12355", "12346"],
 	"canada" : ["35921", "32354", "32346","14380"]
 }
 
-class ZipCodes():
-	def get_data(country):
-		return database[country]
+class IZipCodes(metaclass=ABCMeta):
+	@abstractstaticmethod
+	def get_data():
+		""" Interface Method """
 
-class ZipCodesSingleton(ZipCodes):
+class ZipCodesSingleton(IZipCodes):
 	
 	__instance = None
 	

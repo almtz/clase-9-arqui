@@ -1,18 +1,28 @@
+from abc import ABCMeta, abstractstaticmethod
+database = {
+	"mexico" : ["64382", "62819", "69312"],
+	"usa" : ["12343", "12355", "12346"],
+	"canada" : ["35921", "32354", "32346","14380"]
+}
 
-class IPerson(metaclass = ABCMeta):
+class IZipCodes(metaclass=ABCMeta):
 	@abstractstaticmethod
-	def person_method():
-		""" Intrface Method """
+	def get_data():
+		""" Interface Method """
+		
+class ZipCodes(IZipCodes):
+	def get_data(self, country):
+		return database[country]
 
-	class Person (IPerson):
-		def person_method(self):
-		print("I am a person!")
+class ProxyZipCodes(IZipCodes):
+	def __init__(self):
+		self.zipCodes = ZipCodes()
+	
+	def get_data(self, country):
+		print(self.zipCodes.get_data(country))
 
-		class ProxyPerson(IPerson):
+z = ZipCodes()
+print(z.get_data("usa"))
 
-			def __init__(self):
-			self.person = Person()
-
-			def person_method(self):
-		print("I am the proxy funcionality")
-		self.person.person_method()
+z2 = ProxyZipCodes()
+z2.get_data("mexico")
