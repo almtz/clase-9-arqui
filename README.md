@@ -22,7 +22,7 @@ Generamos la creación de conexiones a la base de datos por medio de Singleton. 
 <br>
 Para proteger la implementación, no se accederá de manera directa a ella sino que se seguirá un patrón Proxy para la conexión. 
 <br>
-![Proxy](https://github.com/A-lm14/clase-9-arqui/blob/main/proxy.png?raw=true)
+![Proxy](https://github.com/A-lm14/clase-9-arqui/blob/main/diagrama.png?raw=true)
 <br>
 <br>
 
