@@ -18,9 +18,7 @@ _Valeria Nicole Barra Maldonado A01653899_
 
 ## Nuestra Solución
 Generamos la creación de conexiones a la base de datos por medio de Singleton. Así, sólo se podrá tener una conexión activa y se obligará al sistema que se cierren las conexiones, evitando la saturación de memoria. 
-<br>
-![Singleton](https://github.com/A-lm14/clase-9-arqui/blob/main/singleton.png?raw=true)
-<br>
+
 <br>
 Para proteger la implementación, no se accederá de manera directa a ella sino que se seguirá un patrón Proxy para la conexión. 
 <br>
