@@ -1,9 +1,4 @@
 from abc import ABCMeta, abstractstaticmethod
-database = {
-	"mexico" : ["64382", "62819", "69312"],
-	"usa" : ["12343", "12355", "12346"],
-	"canada" : ["35921", "32354", "32346","14380"]
-}
 
 class IZipCodes(metaclass=ABCMeta):
 	@abstractstaticmethod
@@ -13,28 +8,30 @@ class IZipCodes(metaclass=ABCMeta):
 class ZipCodesSingleton(IZipCodes):
 	
 	__instance = None
+	__database = {
+	"mexico" : ["64382", "62819", "69312"],
+	"usa" : ["12343", "12355", "12346"],
+	"canada" : ["35921", "32354", "32346","14380"]
+}
 	
 	@staticmethod
 	def get_instance():
 		if ZipCodesSingleton.__instance == None:
 			ZipCodesSingleton()
+		else:
+			print("Singleton cannot de instantied more than once!")
 		return ZipCodesSingleton.__instance
 
 	def __init__(self):
-		if ZipCodesSingleton.__instance != None:
-			raise Exception("Singleton cannot de instantied more than once!")
-		else:
+		if ZipCodesSingleton.__instance == None:
 			ZipCodesSingleton.__instance = self
+		
+
+	def delete(self):
+		print("Instance deleted" )
+		ZipCodesSingleton.__instance = None
+
 
 	@staticmethod
 	def get_data(country):
-		print(database[country])
-
-z = ZipCodesSingleton()
-print(z)
-z.get_data("mexico")
-
-z2 = ZipCodesSingleton.get_instance()
-print(z2)
-z2.get_data("canada")
-
+		print(ZipCodesSingleton.__database[country])
